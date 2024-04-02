@@ -2,7 +2,7 @@ console.log("Starting MongoDB Atlas connection...");
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
-const uri = "mongodb+srv://conorjkeane01:Samandsocks1@cluster0.ajxrfz8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
 
 async function run() {
   console.log("Inside run function...");
