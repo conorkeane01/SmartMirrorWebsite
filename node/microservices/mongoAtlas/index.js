@@ -3,7 +3,6 @@ console.log("Starting MongoDB Atlas connection...");
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 
-
 async function run() {
   console.log("Inside run function...");
   const client = new MongoClient(uri, {

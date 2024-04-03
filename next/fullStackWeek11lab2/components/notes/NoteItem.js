@@ -16,7 +16,6 @@ function NoteItem(props) {
 
   async function deleteDetailHandler() {
     try {
-      // Validate props.id before sending the request
       if (!props.id) {
         console.error('Error deleting: Invalid ID');
         return;
@@ -24,28 +23,28 @@ function NoteItem(props) {
   
       const response = await fetch('http://localhost:8000/deleteNote', {
         method: 'POST',
-        body: JSON.stringify({ _id: props.id }), // Ensure the id is properly formatted as JSON
+        body: JSON.stringify({ _id: props.id }),
         headers: {
           'Content-Type': 'application/json'
         }
       });
       const data = await response.json();
       console.log(JSON.stringify(data));
-      // Handle response data as needed
+      
+      // After successful deletion, reload the page
+      window.location.reload();
     } catch (error) {
       console.error('Error deleting:', error);
     }
   }
-  
+
   return (
     <li className={classes.item}>
+      
       <Card>
-        <div className={classes.image}>
-          <img src={props.image} alt={props.title} />
-        </div>
+
         <div className={classes.content}>
           <h3>{props.title}</h3>
-          <address>{props.address}</address>
         </div>
         <div className={classes.actions}>
           <button onClick={showDetailsHandler}>Show Details</button>

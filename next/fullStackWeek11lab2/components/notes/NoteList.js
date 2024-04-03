@@ -8,9 +8,8 @@ function NoteList(props) {
         <NoteItem
           key={note._id}
           id={note.notingId}
-          image={note.image}
           title={note.title}
-          address={note.address}
+  
         />
       ))}
     </ul>

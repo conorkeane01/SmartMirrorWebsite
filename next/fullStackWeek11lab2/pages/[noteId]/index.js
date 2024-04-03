@@ -13,7 +13,7 @@ export default function () {
     for (let ii = 0; ii < globalCtx.theGlobalObject.notings.length; ii++) {
         let temp = globalCtx.theGlobalObject.notings[ii]
         if (temp.notingId.trim() == router.query.noteId.trim()) {
-            returnVal = <NoteDetail image={temp.image} title={temp.title} description={temp.description} />
+            returnVal = <NoteDetail title={temp.title} description={temp.description} />
         }
     }
     // In the real world, we'd put the code above in the store context module. 
