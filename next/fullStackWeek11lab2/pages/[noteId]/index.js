@@ -12,7 +12,7 @@ export default function () {
     let returnVal = null
     for (let ii = 0; ii < globalCtx.theGlobalObject.notings.length; ii++) {
         let temp = globalCtx.theGlobalObject.notings[ii]
-        if (temp.notingId.trim() == router.query.noteId.trim()) {
+        if (temp._id.trim() == router.query.noteId.trim()) {
             returnVal = <NoteDetail title={temp.title} description={temp.description} />
         }
     }

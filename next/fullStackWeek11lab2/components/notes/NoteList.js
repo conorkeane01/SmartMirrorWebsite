@@ -7,7 +7,7 @@ function NoteList(props) {
       {props.notes.map((note) => (
         <NoteItem
           key={note._id}
-          id={note.notingId}
+          _id={note._id}
           title={note.title}
   
         />

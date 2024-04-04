@@ -1,25 +1,49 @@
 console.log("Starting routes index.js file connection...");
+
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
 
 
+// Initialize MongoDB client
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+
+// Connect to MongoDB Atlas
+client.connect()
+  .then(() => {
+    console.log("Connected to MongoDB Atlas!");
+  })
+  .catch((err) => {
+    console.error("Error connecting to MongoDB Atlas:", err);
+  });
+
+// Connect to MongoDB Atlas using Mongoose
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-.then(() => console.log('Connected to MongoDB Atlas'))
-.catch((err) => console.error('Error connecting to MongoDB Atlas:', err));
+.then(() => {
+  console.log('Connected to MongoDB Atlas');
+})
+.catch((err) => {
+  console.error('Error connecting to MongoDB Atlas:', err);
+});
 
-const { Schema } = mongoose;
-
-const noteSchema = new Schema({
+// Define the schema and model
+const noteSchema = new mongoose.Schema({
   title: String,
   description: String
 }, { collection: 'notings' });
 
-const Noting = mongoose.model('Noting', noteSchema);
+const notings = mongoose.model('notings', noteSchema);
 
 // Admin server page
 router.get('/', async function (req, res, next) {
@@ -30,7 +54,7 @@ router.get('/', async function (req, res, next) {
 
 router.post('/createNote', async function (req, res, next) {
   try {
-    await Noting.create(req.body);
+    await notings.create(req.body);
     res.json({ response: "success" });
   } catch (error) {
     console.error('Error creating note:', error);
@@ -42,9 +66,9 @@ router.post('/readNote', async function (req, res, next) {
   try {
     let data;
     if (req.body.cmd == 'all') {
-      data = await Noting.find().lean();
+      data = await notings.find().lean();
     } else {
-      data = await Noting.find({ _id: req.body._id }).lean();
+      data = await notings.find({ _id: req.body._id }).lean();
     }
     res.json({ notings: data });
   } catch (error) {
@@ -55,7 +79,7 @@ router.post('/readNote', async function (req, res, next) {
 
 router.post('/updateNote', async function (req, res, next) {
   try {
-    await Noting.findOneAndUpdate({ _id: req.body._id }, req.body);
+    await notings.findOneAndUpdate({ _id: req.body._id }, req.body);
     res.json({ response: "success" });
   } catch (error) {
     console.error('Error updating note:', error);
@@ -63,19 +87,15 @@ router.post('/updateNote', async function (req, res, next) {
   }
 });
 
+// cruD   Should use DELETE . . . we'll fix this is Cloud next term
 router.post('/deleteNote', async function (req, res, next) {
   try {
-    const id = req.body._id;
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ error: 'Invalid ID format' });
+    const result = await notings.deleteOne({ _id: req.body._id });
+    if (result.deletedCount === 1) {
+      res.json({ response: "success" });
+    } else {
+      res.json({ response: "fail" });
     }
-
-    const result = await Noting.deleteOne({ _id: id });
-    console.log('Delete result:', result);
-    res.json({ response: "success" });
-    
-    // After successful deletion, instruct the client to reload the page
-    res.reload();
   } catch (error) {
     console.error('Error deleting note:', error);
     res.status(500).json({ error: "An error occurred while deleting the note" });
@@ -84,7 +104,7 @@ router.post('/deleteNote', async function (req, res, next) {
 
 router.post('/getNotes', async function (req, res, next) {
   try {
-    const data = await Noting.find().lean();
+    const data = await notings.find().lean();
     res.json({ notings: data });
   } catch (error) {
     console.error('Error getting notes:', error);
@@ -94,7 +114,7 @@ router.post('/getNotes', async function (req, res, next) {
 
 router.post('/saveNote', async function (req, res, next) {
   try {
-    await Noting.create(req.body);
+    await notings.create(req.body);
     res.json({ response: "success" });
   } catch (error) {
     console.error('Error saving note:', error);
@@ -103,5 +123,3 @@ router.post('/saveNote', async function (req, res, next) {
 });
 
 module.exports = router;
-
-

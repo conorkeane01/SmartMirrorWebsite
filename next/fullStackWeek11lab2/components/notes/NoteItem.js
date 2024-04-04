@@ -1,14 +1,16 @@
 import Card from '../ui/Card';
 import classes from './NoteItem.module.css';
 import { useRouter } from 'next/router';
+import { useContext } from 'react';
+import GlobalContext from '../../pages/store/globalContext';
 
 function NoteItem(props) {
   const router = useRouter();
-
+  const globalCtx = useContext(GlobalContext);
 
   function showDetailsHandler() {
     try {
-      router.push('/' + props.id);
+      router.push('/' + props._id); // Change props.id to props._id
     } catch (error) {
       console.error('Error navigating to details page:', error);
     }
@@ -16,21 +18,23 @@ function NoteItem(props) {
 
   async function deleteDetailHandler() {
     try {
-      if (!props.id) {
+      console.log('Deleting note:', props._id);
+      if (!props._id) {
         console.error('Error deleting: Invalid ID');
         return;
       }
   
       const response = await fetch('http://localhost:8000/deleteNote', {
         method: 'POST',
-        body: JSON.stringify({ _id: props.id }),
+        body: JSON.stringify({ _id: props._id }), 
         headers: {
           'Content-Type': 'application/json'
         }
       });
+      
       const data = await response.json();
       console.log(JSON.stringify(data));
-      
+  
       // After successful deletion, reload the page
       window.location.reload();
     } catch (error) {
@@ -40,9 +44,7 @@ function NoteItem(props) {
 
   return (
     <li className={classes.item}>
-      
       <Card>
-
         <div className={classes.content}>
           <h3>{props.title}</h3>
         </div>
