@@ -1,8 +1,10 @@
 import NoteItem from './NoteItem';
 import classes from './NoteList.module.css';
+import Layout from '../layout/Layout';
 
 function NoteList(props) {
   return (
+    <Layout>
     <ul className={classes.list}>
       {props.notes.map((note) => (
         <NoteItem
@@ -13,6 +15,7 @@ function NoteList(props) {
         />
       ))}
     </ul>
+    </Layout>
   );
 }
 

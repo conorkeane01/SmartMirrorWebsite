@@ -5,7 +5,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
-
+const uri = "instert string"
 
 // Initialize MongoDB client
 const client = new MongoClient(uri, {
@@ -45,6 +45,13 @@ const noteSchema = new mongoose.Schema({
 
 const notings = mongoose.model('notings', noteSchema);
 
+const userDataSchema = new mongoose.Schema({
+  sleep_direction: String,
+  time_spent: Number
+}, { collection: 'UserData' });
+
+const userData = mongoose.model('UserData', userDataSchema);
+
 // Admin server page
 router.get('/', async function (req, res, next) {
   res.render('index');
@@ -77,9 +84,34 @@ router.post('/readNote', async function (req, res, next) {
   }
 });
 
+router.post('/readData', async function (req, res, next) {
+  try {
+    let data;
+    if (req.body.cmd == 'all') {
+      data = await userData.find().lean();
+    } else {
+      data = await userData.find({ _id: req.body._id }).lean();
+    }
+    res.json({ userData: data });
+  } catch (error) {
+    console.error('Error reading note:', error);
+    res.status(500).json({ error: "An error occurred while reading the note" });
+  }
+});
+
 router.post('/updateNote', async function (req, res, next) {
   try {
     await notings.findOneAndUpdate({ _id: req.body._id }, req.body);
+    res.json({ response: "success" });
+  } catch (error) {
+    console.error('Error updating note:', error);
+    res.status(500).json({ error: "An error occurred while updating the note" });
+  }
+});
+
+router.post('/updateData', async function (req, res, next) {
+  try {
+    await userData.findOneAndUpdate({ _id: req.body._id }, req.body);
     res.json({ response: "success" });
   } catch (error) {
     console.error('Error updating note:', error);
@@ -112,6 +144,16 @@ router.post('/getNotes', async function (req, res, next) {
   }
 });
 
+router.post('/getData', async function (req, res, next) {
+  try {
+    const data = await userData.find().lean();
+    res.json({ userData: data });
+  } catch (error) {
+    console.error('Error getting notes:', error);
+    res.status(500).json({ error: "An error occurred while getting the notes" });
+  }
+});
+
 router.post('/saveNote', async function (req, res, next) {
   try {
     await notings.create(req.body);
@@ -122,4 +164,14 @@ router.post('/saveNote', async function (req, res, next) {
   }
 });
 
-module.exports = router;
+router.post('/saveData', async function (req, res, next) {
+  try {
+    await userData.create(req.body);
+    res.json({ response: "success" });
+  } catch (error) {
+    console.error('Error saving note:', error);
+    res.status(500).json({ error: "An error occurred while saving the note" });
+  }
+});
+
+module.exports = router;     

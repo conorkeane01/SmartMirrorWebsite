@@ -2,6 +2,9 @@ import classes from './HamMenuContent.module.css';
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
 import GlobalContext from '../../pages/store/globalContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faCloudSunRain, faBed, faStickyNote } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function HamMenuContent(props) {
   const globalCtx = useContext(GlobalContext);
@@ -28,17 +31,17 @@ export default function HamMenuContent(props) {
 
   // Define the menu items statically
   const menuItems = [
-    { title: 'Home', webAddress: '/' },
-    { title: 'Weather', webAddress: '/weather' },
-    { title: 'Sleep', webAddress: '/sleep' },
-    { title: 'Notes', webAddress: '/notes' },
+    { title: 'Home', webAddress: '/home', icon: faHome },
+    { title: 'Weather', webAddress: '/weather', icon: faCloudSunRain },
+    { title: 'Sleep', webAddress: '/sleep', icon: faBed },
+    { title: 'Notes', webAddress: '/', icon: faStickyNote },
   ];
 
   let contentJsx = menuItems.map((item, index) => (
-    <div className={classes.menuItem} key={index} onClick={() => clicked(item.webAddress)}>
-      {item.title}
-    </div>
-  ));
+  <div className={classes.menuItem} key={index} onClick={() => clicked(item.webAddress)}>
+    <FontAwesomeIcon icon={item.icon} /> {item.title}
+  </div>
+));
 
   return (
     <div className={classes.background} onClick={() => closeMe()}>

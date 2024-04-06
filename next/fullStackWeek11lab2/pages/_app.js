@@ -1,18 +1,20 @@
 import '../styles/globals.css'
 import Layout from '../components/layout/Layout'
 import { GlobalContextProvider } from './store/globalContext'
+import { GlobalContextProviderData } from './store/globalContextData'
+
 
 function MyApp({ Component, pageProps }) {
   return (
     <GlobalContextProvider>
-      <Layout>
+      <GlobalContextProviderData>
         <Component {...pageProps} />
-      </Layout>
+      </GlobalContextProviderData>
     </GlobalContextProvider>
   );
 }
 
-export default MyApp
+export default MyApp;
 
 
 /*

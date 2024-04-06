@@ -1,3 +1,4 @@
+
 import classes from './MainNavigation.module.css'
 import Link from 'next/link'
 import HamMenu from "../generic/HamMenu"
@@ -26,14 +27,6 @@ function MainNavigation() {
       <HamMenu toggleMenuHide={() => toggleMenuHide()} />
       <HamMenuFAB toggleMenuHide={() => toggleMenuHide()} />
       <nav>
-        <ul>
-          <li>
-            <Link href='/'>All Notes</Link> ({globalCtx.theGlobalObject.notings.length})
-          </li>
-          <li>
-            <Link href='/new-note'>Add New note</Link>
-          </li>
-        </ul>
       </nav>
     </header>
   );
