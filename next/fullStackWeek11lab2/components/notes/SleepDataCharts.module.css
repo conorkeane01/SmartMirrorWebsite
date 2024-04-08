@@ -1,0 +1,14 @@
+.chartContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    height: calc(100vh - 5rem); /* Adjust height considering the header height */
+    padding: 2rem; /* Optional padding */
+  }
+  
+  /* Style for the canvas or chart element (optional) */
+  .chartContainer canvas {
+    max-width: 600px; /* Or any other max-width */
+    max-height: 400px; /* Or any other max-height */
+  }

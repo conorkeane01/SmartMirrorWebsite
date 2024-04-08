@@ -5,7 +5,9 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
-const uri = "instert string"
+//const uri = "instert string"
+const uri = "";
+
 
 // Initialize MongoDB client
 const client = new MongoClient(uri, {

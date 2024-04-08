@@ -7,7 +7,8 @@ function Weather() {
   const [data, setData] = useState({});
   const [location, setLocation] = useState("");
 
-  
+  const url =
+    ``;
 
   const searchLocation = (event) => {
     if (event.key === 'Enter') {
