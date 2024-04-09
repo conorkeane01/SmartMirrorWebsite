@@ -28,7 +28,7 @@ function NoteItem(props) {
         return;
       }
 
-      const response = await fetch("http://localhost:8000/deleteNote", {
+      const response = await fetch("http://34.239.36.76:8000/deleteNote", {
         method: "POST",
         body: JSON.stringify({ _id: props._id }),
         headers: {
