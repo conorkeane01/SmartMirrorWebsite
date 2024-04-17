@@ -3,7 +3,7 @@
 
 .home {
   height: calc(100vh - 5rem); /* Adjust height to account for navigation bar */
-  background: url('/Photos/rainHome.gif') no-repeat center/cover;
+  background: url('/photos/rainHome.gif') no-repeat center/cover;
   color: white; /* Text color */
   display: flex;
   justify-content: center;
