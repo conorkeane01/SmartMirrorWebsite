@@ -2,7 +2,7 @@
 import NewNoteForm from '../../components/notes/NewNoteForm'
 import { useRouter } from 'next/router';
 //import GlobalContext from "../store/globalContext"
-import GlobalContext from "../../pages/store/globalContext"
+import GlobalContext from "../../utils/store/globalContext"
 import { useContext } from 'react'
 
 function NewNotePage() {

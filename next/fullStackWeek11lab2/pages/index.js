@@ -1,6 +1,6 @@
 import NoteList from '../components/notes/NoteList'
 import { useContext } from "react";
-import GlobalContext from "./store/globalContext"
+import GlobalContext from "../utils/store/globalContext"
 import React from 'react';
 
 

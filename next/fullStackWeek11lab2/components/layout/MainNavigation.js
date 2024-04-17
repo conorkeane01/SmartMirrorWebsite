@@ -4,7 +4,7 @@ import Link from 'next/link'
 import HamMenu from "../generic/HamMenu"
 import HamMenuFAB from "../generic/HamMenuFAB"
 import { useContext } from 'react'
-import GlobalContext from "../../pages/store/globalContext"
+import GlobalContext from "../../utils/store/globalContext"
 import HamMenuContent from "./HamMenuContent"
 import { useRouter } from 'next/router'
 

@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import Layout from '../components/layout/Layout'
-import { GlobalContextProvider } from './store/globalContext'
-import { GlobalContextProviderData } from './store/globalContextData'
+import { GlobalContextProvider } from '../utils/store/globalContext'
+import { GlobalContextProviderData } from '../utils/store/globalContextData'
 
 
 function MyApp({ Component, pageProps }) {

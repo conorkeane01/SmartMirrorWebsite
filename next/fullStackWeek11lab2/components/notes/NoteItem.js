@@ -2,7 +2,7 @@ import Card from "../ui/Card";
 import classes from "./NoteItem.module.css";
 import { useRouter } from "next/router";
 import { useContext } from "react";
-import GlobalContext from "../../pages/store/globalContext";
+import GlobalContext from "../../utils/store/globalContext";
 import Link from 'next/link'
 import HamMenu from "../generic/HamMenu"
 import HamMenuFAB from "../generic/HamMenuFAB"
@@ -28,7 +28,7 @@ function NoteItem(props) {
         return;
       }
 
-      const response = await fetch("http://34.239.36.76:8000/deleteNote", {
+      const response = await fetch("http://34.239.36.76:8000/deleteNote", {   //http://34.239.36.76:8000/deleteNote
         method: "POST",
         body: JSON.stringify({ _id: props._id }),
         headers: {

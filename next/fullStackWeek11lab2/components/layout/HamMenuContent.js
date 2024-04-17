@@ -1,7 +1,7 @@
 import classes from './HamMenuContent.module.css';
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
-import GlobalContext from '../../pages/store/globalContext';
+import GlobalContext from '../../utils/store/globalContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faCloudSunRain, faBed, faStickyNote } from '@fortawesome/free-solid-svg-icons';
 

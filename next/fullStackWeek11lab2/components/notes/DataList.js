@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import GlobalContextData from '../../pages/store/globalContextData'; // Adjust the import path
+import GlobalContextData from '../../utils/store/globalContextData'; // Adjust the import path
 import SleepDataItem from './SleepDataItem'; // This is a new or adjusted component
 
 
