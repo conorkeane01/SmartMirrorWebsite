@@ -95,3 +95,14 @@
 .placeholder {
     color: #f8f8f8;
 }
+
+.hgButton {
+    background-color: white; /* Keyboard background */
+    color: black; /* Letter color */
+}
+
+html .simple-keyboard.hg-theme-default.myTheme .hg-button {
+    background-color: white !important; /* Ensuring background is white */
+    color: black !important; /* Ensuring text color is black */
+    opacity: 1 !important; /* Making sure it is fully visible */
+}
