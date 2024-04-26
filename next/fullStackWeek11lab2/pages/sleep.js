@@ -13,7 +13,7 @@ function Sleep() {
     const fetchData = async () => {
       try {
         console.log("Attempting to fetch data...");
-        const backendUrl = 'http://34.239.36.76:8000';   //http://34.239.36.76:8000
+        const backendUrl = 'http://host:8000';   //http://34.239.36.76:8000
         const response = await fetch("/api/get-data");
         if (!response.ok) {
           throw new Error(

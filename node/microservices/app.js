@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const createError = require('http-errors');
 const path = require('path');
@@ -5,9 +6,11 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const favicon = require('serve-favicon');
 const cors = require('cors'); // Add this line to require cors
+const bodyParser = require("body-parser")
 
 const indexRouter = require('./routes/index');
 const hbs = require('express-handlebars');
+const SpotifyWebApi = require('spotify-web-api-node');
 
 const app = express();
 
@@ -27,11 +30,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended:true }))
 
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  console.log(err)
   next(createError(404));
 });
 
@@ -46,5 +51,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+//app.listen(8000)
 module.exports = app;
 
