@@ -5,7 +5,7 @@ import Layout from "../components/layout/Layout";
 import SpotifyWebApi from "spotify-web-api-node";
 import TrackSearchResult from "./TrackSearchResult";
 import axios from "axios";
-import styles from './dashboard.module.css'
+import styles from './Dashboard.module.css'
 import Image from 'next/image';
 import Player from "./player";
 
