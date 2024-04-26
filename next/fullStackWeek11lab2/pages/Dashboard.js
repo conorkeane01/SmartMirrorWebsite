@@ -5,8 +5,8 @@ import Layout from "../components/layout/Layout";
 import SpotifyWebApi from "spotify-web-api-node";
 import TrackSearchResult from "./TrackSearchResult";
 import axios from "axios";
-import styles from './Dashboard.module.css'
-import Image from 'next/image';
+import styles from "./Dashboard.module.css";
+import Image from "next/image";
 import Player from "./player";
 
 const spotifyApi = new SpotifyWebApi({
@@ -64,25 +64,29 @@ export default function Dashboard({ code }) {
       if (cancel) return;
       setSearchResults(
         res.body.tracks.items.map((track) => {
-          const smallestAlbumImage = track.album.images.reduce(
-            (smallest, image) => {
-              if (image.height < smallest.height) return image;
-              return smallest;
-            },
-            track.album.images[0]
-          );
-          const largestAlbumImage = track.album.images.reduce(
-            (largest, image) =>
-              image.height > largest.height ? image : largest,
-            track.album.images[0]
-          );
+          const albumImages = track.album.images;
+          const smallestAlbumImage = albumImages.length
+            ? albumImages.reduce(
+                (smallest, image) =>
+                  image.height < smallest.height ? image : smallest,
+                albumImages[0]
+              )
+            : null;
+
+          const largestAlbumImage = albumImages.length
+            ? albumImages.reduce(
+                (largest, image) =>
+                  image.height > largest.height ? image : largest,
+                albumImages[0]
+              )
+            : null;
 
           return {
             artist: track.artists[0].name,
             title: track.name,
             uri: track.uri,
-            albumUrl: smallestAlbumImage.url,
-            largeAlbumUrl: largestAlbumImage.url, // Larger image for display
+            albumUrl: smallestAlbumImage ? smallestAlbumImage.url : null,
+            largeAlbumUrl: largestAlbumImage ? largestAlbumImage.url : null,
             albumName: track.album.name,
           };
         })
@@ -96,10 +100,16 @@ export default function Dashboard({ code }) {
     <Layout>
       <div className={styles.background}>
         {Array.from({ length: 12 }).map((_, i) => (
-          <span key={i} className={`${styles['background']} ${styles[`span${i}`]}`}></span>
+          <span
+            key={i}
+            className={`${styles["background"]} ${styles[`span${i}`]}`}
+          ></span>
         ))}
       </div>
-      <Container className={`d-flex flex-column py-2 ${styles.content}`} style={{ height: "100vh" }}>
+      <Container
+        className={`d-flex flex-column py-2 ${styles.content}`}
+        style={{ height: "100vh" }}
+      >
         <Form.Control
           type="search"
           placeholder="Search Songs"
@@ -108,31 +118,57 @@ export default function Dashboard({ code }) {
         />
         <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
           {searchResults.map((track) => (
-            <div className="mb-3" key={track.uri} onClick={() => chooseTrack(track)} style={{background: 'rgba(255, 255, 255, 0.7)', display: "flex", alignItems: "center", padding: "10px", borderRadius: "8px" }}>
+            <div
+              className="mb-3"
+              key={track.uri}
+              onClick={() => chooseTrack(track)}
+              style={{
+                background: "rgba(255, 255, 255, 0.7)",
+                display: "flex",
+                alignItems: "center",
+                padding: "10px",
+                borderRadius: "8px",
+              }}
+            >
               {track.albumUrl && ( // Add conditional check for albumUrl
-                <Image src={track.albumUrl} alt={`${track.title} album cover`} width={64} height={64} layout="fixed" />
+                <Image
+                  src={track.albumUrl}
+                  alt={`${track.title} album cover`}
+                  width={64}
+                  height={64}
+                  layout="fixed"
+                />
               )}
               <Card.Body>
                 <div>{track.title}</div>
                 <div>{track.albumName}</div>
-                <div style={{ color: 'gray' }}>{track.artist}</div>
+                <div style={{ color: "gray" }}>{track.artist}</div>
               </Card.Body>
             </div>
           ))}
           {searchResults.length === 0 && trackName && (
             <div className="text-center" style={{ whiteSpace: "pre-wrap" }}>
-              <Image src={trackName.largeAlbumUrl} alt={`${trackName.title} album cover`} width={300} height={300} layout="intrinsic" />
+              <Image
+                src={trackName.largeAlbumUrl}
+                alt={`${trackName.title} album cover`}
+                width={300}
+                height={300}
+                layout="intrinsic"
+              />
               <h2>{trackName.title}</h2>
               <h4>{trackName.albumName}</h4>
               <p>{trackName.artist}</p>
-              {lyrics.startsWith('http') ?
-                <a href={lyrics} target="_blank" rel="noopener noreferrer">View Lyrics on Genius</a> :
+              {lyrics.startsWith("http") ? (
+                <a href={lyrics} target="_blank" rel="noopener noreferrer">
+                  View Lyrics on Genius
+                </a>
+              ) : (
                 <p>{lyrics}</p>
-              }
+              )}
             </div>
           )}
         </div>
-        <div>
+        <div className="player-position">
           <Player accessToken={accessToken} trackUri={trackName?.uri} />
         </div>
       </Container>
