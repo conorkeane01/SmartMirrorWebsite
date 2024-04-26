@@ -4,9 +4,10 @@ import { Container, Form, Card } from "react-bootstrap";
 import Layout from "../components/layout/Layout";
 import SpotifyWebApi from "spotify-web-api-node";
 import TrackSearchResult from "./TrackSearchResult";
-import Player from "./player";
 import axios from "axios";
 import styles from './dashboard.module.css'
+import Image from 'next/image';
+import Player from "./player";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: "ccc25013b49c4614a8c38194cdaf6137",
@@ -108,7 +109,9 @@ export default function Dashboard({ code }) {
         <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
           {searchResults.map((track) => (
             <div className="mb-3" key={track.uri} onClick={() => chooseTrack(track)} style={{background: 'rgba(255, 255, 255, 0.7)', display: "flex", alignItems: "center", padding: "10px", borderRadius: "8px" }}>
-              <img variant="top" src={track.albumUrl} style={{ Height: '64px', width: '64px' }} />
+              {track.albumUrl && ( // Add conditional check for albumUrl
+                <Image src={track.albumUrl} alt={`${track.title} album cover`} width={64} height={64} layout="fixed" />
+              )}
               <Card.Body>
                 <div>{track.title}</div>
                 <div>{track.albumName}</div>
@@ -118,7 +121,7 @@ export default function Dashboard({ code }) {
           ))}
           {searchResults.length === 0 && trackName && (
             <div className="text-center" style={{ whiteSpace: "pre-wrap" }}>
-              <img src={trackName.largeAlbumUrl} alt="Album cover" style={{ maxWidth: '300px' }} />
+              <Image src={trackName.largeAlbumUrl} alt={`${trackName.title} album cover`} width={300} height={300} layout="intrinsic" />
               <h2>{trackName.title}</h2>
               <h4>{trackName.albumName}</h4>
               <p>{trackName.artist}</p>

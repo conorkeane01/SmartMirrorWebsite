@@ -24,7 +24,7 @@ export default function useAuth(code) {
        // window.location = "/music";
         router.push("/music");
       });
-  }, [code]);
+  }, [code, router]);
 
   useEffect(() => {
     if (refreshToken || !expiresIn) return
@@ -45,7 +45,7 @@ export default function useAuth(code) {
     }, (expiresIn - 60) * 1000 )
 
     return () => clearInterval(interval)
-  }, [refreshToken, expiresIn])
+  }, [refreshToken, expiresIn, router])
 
   return accessToken;
 }
