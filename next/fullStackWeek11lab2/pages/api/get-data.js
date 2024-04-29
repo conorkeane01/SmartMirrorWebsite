@@ -1,7 +1,7 @@
 // /api/new-data
 
 async function handler(req, res) { // can be called anything you like
-    const response = await fetch('http://localhost:8000/readData', {  //http://34.239.36.76:8000/readData
+    const response = await fetch('http://34.239.36.76:8000/readData', {  //http://34.239.36.76:8000/readData
       method: 'POST',
       body: JSON.stringify({ cmd: 'all' }),
       headers: {
@@ -14,3 +14,4 @@ async function handler(req, res) { // can be called anything you like
   }
   
   export default handler;
+

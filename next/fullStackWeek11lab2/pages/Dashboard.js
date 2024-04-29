@@ -34,7 +34,7 @@ export default function Dashboard({ code }) {
       artist: trackName.artist,
     });
 
-    fetch(`http://localhost:8000/lyrics?${queryParams.toString()}`)
+    fetch(`http://34.239.36.76:8000/lyrics?${queryParams.toString()}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");

@@ -10,7 +10,7 @@ export default function useAuth(code) {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8000/login", {
+      .post("http://34.239.36.76:8000/login", {
         code,
       })
       .then((res) => {
@@ -24,13 +24,13 @@ export default function useAuth(code) {
        // window.location = "/music";
         router.push("/music");
       });
-  }, [code,]);
+  }, [code, router]);
 
   useEffect(() => {
     if (refreshToken || !expiresIn) return
     const interval = setInterval(() => {
         axios
-      .post("http://localhost:8000/refresh", {
+      .post("http://34.239.36.76:8000/refresh", {
         refreshToken,
       })
       .then((res) => {

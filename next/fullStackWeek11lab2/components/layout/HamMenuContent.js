@@ -40,10 +40,11 @@ export default function HamMenuContent(props) {
   ];
 
   let contentJsx = menuItems.map((item, index) => (
-  <div className={classes.menuItem} key={index} onClick={() => clicked(item.webAddress)}>
-    <FontAwesomeIcon icon={item.icon} /> {item.title}
-  </div>
-));
+    <div className={classes.menuItem} key={index} onClick={() => clicked(item.webAddress)}>
+      <FontAwesomeIcon icon={item.icon} className={classes.menuIcon} />
+      <span className={classes.menuText}>{item.title}</span>
+    </div>
+  ));
 
   return (
     <div className={classes.background} onClick={() => closeMe()}>

@@ -61,6 +61,7 @@ const userDataSchema = new mongoose.Schema(
   {
     sleep_direction: String,
     time_spent: Number,
+    mouth_status: String,
   },
   { collection: "UserData" }
 );

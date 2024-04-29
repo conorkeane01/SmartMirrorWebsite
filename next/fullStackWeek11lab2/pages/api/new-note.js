@@ -10,7 +10,7 @@ async function handler(req, res) { // can be called anything you like
   });
   const data = await response.json();
   res.json(data)*/
-  const response = await fetch('http://localhost:8000/createNote', { //http://34.239.36.76:8000/createNote
+  const response = await fetch('http://34.239.36.76:8000/createNote', { //http://34.239.36.76:8000/createNote
     method: 'POST',
     body: JSON.stringify(req.body),
     headers: {

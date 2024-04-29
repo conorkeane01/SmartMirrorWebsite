@@ -1,14 +1,79 @@
 .chartContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center horizontally */
-    justify-content: center; /* Center vertically */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem; /* Space between grid items */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
     height: calc(100vh - 5rem); /* Adjust height considering the header height */
     padding: 2rem; /* Optional padding */
+    overflow: auto; /* Add scrolling if content is larger than the screen */
   }
   
-  /* Style for the canvas or chart element (optional) */
-  .chartContainer canvas {
+  /* Style for individual charts to give them more space */
+  .chartWrapper {
+    width: 100%; /* Use the full width */
     max-width: 600px; /* Or any other max-width */
+    margin: 0 auto; /* Center the charts horizontally */
+  }
+  
+  /* Style for the canvas or chart element */
+  .chartWrapper canvas {
+    width: 100% !important; /* Override any inline styles if necessary */
     max-height: 400px; /* Or any other max-height */
+  }
+
+  .sleep-body {
+    font-family: 'Outfit', 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative; /* Needed for the pseudo-element positioning */
+    min-height: 100vh; /* Full viewport height */
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, .4); /* A fallback color if the GIF doesn't load */
+    color: #ffffff; /* Text color */
+}
+
+.sleep-body:before {
+    content: '';
+    background: url('/photos/nightGif.gif') no-repeat center/cover;
+    position: absolute; /* Positioning it over the sleep-body */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Placing it behind the content */
+}
+
+.sleep {
+    /* ... all your current styles ... */
+    position: relative; /* Needed for the pseudo-element positioning */
+    min-height: 100vh; /* Full viewport height */
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, .4); /* A fallback color if the GIF doesn't load */
+    color: #ffffff; /* Text color */
+  }
+  
+  .sleep:before {
+    content: '';
+    background: url('/photos/nightGif.gif') no-repeat center/cover;
+    position: absolute; /* Positioning it over the sleep-body */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Placing it behind the content */
+  }
+
+  .warning {
+    background-color: #f8d7da; /* Example: light red */
+    color: #721c24; /* Example: dark red */
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0.25rem;
+    border: 1px solid #f5c6cb;
+    text-align: center;
   }
