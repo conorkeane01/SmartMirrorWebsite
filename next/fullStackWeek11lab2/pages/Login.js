@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Container } from "react-bootstrap"
 
-const AUTH_URL = "https://accounts.spotify.com/authorize?client_id=ccc25013b49c4614a8c38194cdaf6137&response_type=code&redirect_uri=http://smart-mirror-website.vercel.app/music&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state"
+const AUTH_URL = "https://accounts.spotify.com/authorize?client_id=ccc25013b49c4614a8c38194cdaf6137&response_type=code&redirect_uri=https://smart-mirror-website.vercel.app/music&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state"
 
 export default function Login() {
     console.log("Login component rendered");
