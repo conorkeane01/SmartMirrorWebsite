@@ -5,7 +5,7 @@
   z-index: 50;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Dimmed background overlay */
+  background-color: rgba(0, 0, 0, 0.5); 
 }
 
 @keyframes fallAnimation {
@@ -13,7 +13,7 @@
     background-position: bottom;
   }
   100% {
-    /* This value ensures the white gradient "rises" to the top */
+  
     background-position: top;
   }
 }
@@ -26,18 +26,17 @@
   width: 75%;
   max-width: 275px;
   height: 100%;
-  background-color: #1a2920; /* Solid green background */
-  /* Adjusted gradient to cover more space */
+  background-color: #1a2920; 
   background-image: linear-gradient(
-    #1a2920 75%, /* Green */
-    rgba(255, 255, 255, 0.8) 100% /* White */
+    #1a2920 75%, 
+    rgba(255, 255, 255, 0.8) 100% 
   );
-  background-size: 100% 300%; /* Enlarged background size for the animation */
+  background-size: 100% 300%; 
   background-repeat: no-repeat;
   animation: fallAnimation 5s linear infinite alternate;
   overflow-y: auto;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
 }
 
 .mainContent::-webkit-scrollbar {
@@ -47,22 +46,22 @@
 .menuItem {
   color: white; /* Changing text color for contrast */
   padding: 10px;
-  border-bottom: 1px solid white; /* White border for items */
+  border-bottom: 1px solid white; 
   font-size: 20px;
-  background-color: rgba(0, 0, 0, 0.2); /* Slight dimming of menu item backgrounds */
+  background-color: rgba(0, 0, 0, 0.2); 
   transition: background-color 0.3s;
 }
 
 .menuItem:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* Light hover effect */
+  background-color: rgba(255, 255, 255, 0.1); 
 }
 
-/* Extra styling for icons and text alignment */
+
 .menuIcon {
-  margin-right: 10px; /* Spacing before the title */
+  margin-right: 10px; 
 }
 
 .menuText {
-  display: inline-block; /* Ensuring proper alignment */
-  vertical-align: middle; /* Centering text vertically */
+  display: inline-block; 
+  vertical-align: middle; 
 }

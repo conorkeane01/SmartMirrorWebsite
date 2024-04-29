@@ -10,7 +10,7 @@
     height: 100vh;
     top: 0;
     left: 0;
-    background: #1e6737; /* Example background color, adjust as needed */
+    background: #1e6737; 
     overflow: hidden;
     z-index: -1; /* Ensure background is behind all other content */
 }
@@ -138,7 +138,7 @@
 }
 
 .content {
-    position: relative; /* This makes sure the content is rendered above the background */
+    position: relative; /* content is rendered above the background */
     z-index: 1; /* Higher z-index than background */
 }
 
@@ -147,4 +147,3 @@
     top: 75%;
     width: 100%;
 }
-

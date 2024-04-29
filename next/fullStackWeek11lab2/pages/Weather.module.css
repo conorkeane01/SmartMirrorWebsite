@@ -97,12 +97,12 @@
 }
 
 .hgButton {
-    background-color: white; /* Keyboard background */
-    color: black; /* Letter color */
+    background-color: white; 
+    color: black; 
 }
 
 html .simple-keyboard.hg-theme-default.myTheme .hg-button {
-    background-color: white !important; /* Ensuring background is white */
-    color: black !important; /* Ensuring text color is black */
-    opacity: 1 !important; /* Making sure it is fully visible */
+    background-color: white !important; 
+    color: black !important; 
+    opacity: 1 !important; 
 }

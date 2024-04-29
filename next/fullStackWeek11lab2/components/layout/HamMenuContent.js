@@ -16,7 +16,7 @@ export default function HamMenuContent(props) {
     return null;
   }
 
-  function clicked(webAddress) {
+  function clicked(webAddress) {    //Functions to open and close HamhMenu
     globalCtx.updateGlobals({ cmd: 'hideHamMenu', newVal: true });
     router.push(webAddress);
   }

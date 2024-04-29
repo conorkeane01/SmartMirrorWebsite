@@ -205,7 +205,7 @@ router.post("/saveData", async function (req, res, next) {
 router.post("/refresh", (req, res) => {
   const refreshToken = req.body.refreshToken;
   const spotifyApi = new SpotifyWebApi({
-    redirectUri: process.env.REDIRECT_URI,
+    redirectUri: 'http://34.239.36.76:3000/music',
     clientId: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     refreshToken,

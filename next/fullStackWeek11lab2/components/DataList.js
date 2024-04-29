@@ -1,3 +1,4 @@
+//This code will fetch data for the sleeping graphs
 import React, { useState, useEffect } from 'react';
 import NoteItem from './notes/DataItem';
 
@@ -7,7 +8,7 @@ function DataList() {
   useEffect(() => {
     fetchData();
   }, []);
-
+//post request to mongodb on the backend
   async function fetchData() {
     try {
       const response = await fetch('/api/getData', {

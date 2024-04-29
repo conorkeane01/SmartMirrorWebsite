@@ -1,3 +1,4 @@
+//This is the main spotify api page that displays and plays the music to the user
 import React, { useState, useEffect } from "react";
 import useAuth from "./useAuth";
 import { Container, Form, Card } from "react-bootstrap";
@@ -9,7 +10,7 @@ import styles from "./Dashboard.module.css";
 import Image from "next/image";
 import Player from "./player";
 
-const spotifyApi = new SpotifyWebApi({
+const spotifyApi = new SpotifyWebApi({  //sotify clients id
   clientId: "ccc25013b49c4614a8c38194cdaf6137",
 });
 
@@ -34,7 +35,7 @@ export default function Dashboard({ code }) {
       artist: trackName.artist,
     });
 
-    fetch(`http://34.239.36.76:8000/lyrics?${queryParams.toString()}`)
+    fetch(`http://34.239.36.76:8000/lyrics?${queryParams.toString()}`)   //get lyrics from the backend
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -46,7 +47,7 @@ export default function Dashboard({ code }) {
       })
       .catch((error) => {
         console.error("Error fetching lyrics:", error);
-        setLyrics("Unable to fetch lyrics.");
+        setLyrics("Unable to fetch lyrics.");  //I do not have a suitable lyric api or library and as a result no lyrics will show
       });
   }, [trackName]);
 

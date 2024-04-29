@@ -1,8 +1,7 @@
 // /api/delete-note
-
 async function handler(req, res) {
     try {
-      const { _id } = req.body; // Access _id instead of noteId
+      const { _id } = req.body; 
       if (!_id) {
         return res.status(400).json({ error: 'Invalid ID' });
       }
@@ -13,10 +12,12 @@ async function handler(req, res) {
       } else {
         return res.json({ response: 'fail' });
       }
-    } catch (error) {
+    } catch (error) {  //Try and catch any potential errors
       console.error('Error deleting:', error);
       res.status(500).json({ error: 'An error occurred while deleting the note' });
     }
   }
   
   export default handler;
+  
+

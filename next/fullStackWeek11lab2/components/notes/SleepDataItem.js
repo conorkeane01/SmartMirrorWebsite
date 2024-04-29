@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../ui/Card'; // Adjust the import path as necessary
+import Card from '../ui/Card'; 
 
 function SleepDataItem({ userData }) {
     return (
@@ -16,3 +16,4 @@ function SleepDataItem({ userData }) {
 }
 
 export default SleepDataItem;
+

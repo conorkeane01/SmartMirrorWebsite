@@ -1,3 +1,4 @@
+//This code checks the spotify api for authentication
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -10,7 +11,7 @@ export default function useAuth(code) {
 
   useEffect(() => {
     axios
-      .post("http://34.239.36.76:8000/login", {
+      .post("http://34.239.36.76:8000/login", { //Call to the backend to check log in details are correct
         code,
       })
       .then((res) => {
@@ -27,10 +28,10 @@ export default function useAuth(code) {
   }, [code, router]);
 
   useEffect(() => {
-    if (refreshToken || !expiresIn) return
+    if (refreshToken || !expiresIn) return  //check to see if refresh token is expired
     const interval = setInterval(() => {
         axios
-      .post("http://34.239.36.76:8000/refresh", {
+      .post("http://34.239.36.76:8000/refresh", {  //call backend to refresh tokens
         refreshToken,
       })
       .then((res) => {
@@ -49,3 +50,4 @@ export default function useAuth(code) {
 
   return accessToken;
 }
+

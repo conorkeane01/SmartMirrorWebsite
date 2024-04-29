@@ -1,6 +1,6 @@
 import React, { useState, useRef} from "react";
 import axios from "axios";
-import styles from "./Weather.module.css"; // Import the module.css file as a module
+import styles from "./Weather.module.css"; 
 import Layout from "../components/layout/Layout"
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
@@ -38,8 +38,8 @@ function Weather() {
 
   const handleKeyPress = (button) => {
     console.log("Button pressed:", button);  // Logging any key press to console
-    if (button === "{enter}") { // This checks for the exact label of the virtual keyboard enter key
-      searchLocation();
+    if (button === "{enter}") {  //if user presses enter 
+      searchLocation(); //call function
     }
   };
 
@@ -66,7 +66,7 @@ function Weather() {
                   {
                     class: "hg-standard-btn",
                     buttons: "a b c d e f g h i j k l m n o p q r s t u v w x y z",
-                    style: { backgroundColor: 'white', color: 'black', opacity: 1 } // Directly applying styles
+                    style: { backgroundColor: 'white', color: 'black', opacity: 1 } 
                   }
                 ]}
                 theme="simple-keyboard hg-theme-default hg-layout-default myTheme"
@@ -97,7 +97,7 @@ function Weather() {
                   {data.main ? <p className={styles.bold}>{data.main.humidity}%</p> : null}
                   <p>Humidity</p>
                 </div>
-                <div className={styles.wind}>
+                <div className={styles.wind}>  
                   {data.wind ? <p className={styles.bold}>{data.wind.speed} MPH</p> : null}
                   <p>Wind Speed</p>
                 </div>

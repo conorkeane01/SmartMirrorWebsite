@@ -1,3 +1,4 @@
+//This is the code for the player at the bottom of the spotify api
 import { useState, useEffect } from 'react';
 import SpotifyPlayer from 'react-spotify-web-playback';
 
@@ -26,3 +27,5 @@ function Player({ accessToken, trackUri }) {
 }
 
 export default Player;
+
+

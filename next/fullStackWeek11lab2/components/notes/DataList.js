@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import GlobalContextData from '../../utils/store/globalContextData'; // Adjust the import path
-import SleepDataItem from './SleepDataItem'; // This is a new or adjusted component
+import GlobalContextData from '../../utils/store/globalContextData'; 
+import SleepDataItem from './SleepDataItem'; 
 
 
 export default function DataList() {
@@ -18,3 +18,4 @@ export default function DataList() {
     </ul>
   );
 }
+

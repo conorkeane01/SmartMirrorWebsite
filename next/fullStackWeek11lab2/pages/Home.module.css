@@ -2,9 +2,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
 .home {
-  height: calc(100vh - 5rem); /* Adjust height to account for navigation bar */
+  height: calc(100vh - 5rem); 
   background: url('/photos/rainHome.gif') no-repeat center/cover;
-  color: white; /* Text color */
+  color: white; 
   display: flex;
   justify-content: center;
   align-items: center;

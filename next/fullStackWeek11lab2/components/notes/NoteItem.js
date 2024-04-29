@@ -14,7 +14,7 @@ function NoteItem(props) {
 
   function showDetailsHandler() {
     try {
-      router.push("/" + props._id); // Change props.id to props._id
+      router.push("/" + props._id); 
     } catch (error) {
       console.error("Error navigating to details page:", error);
     }
@@ -39,7 +39,7 @@ function NoteItem(props) {
       const data = await response.json();
       console.log(JSON.stringify(data));
 
-      // After successful deletion, reload the page
+
       window.location.reload();
     } catch (error) {
       console.error("Error deleting:", error);

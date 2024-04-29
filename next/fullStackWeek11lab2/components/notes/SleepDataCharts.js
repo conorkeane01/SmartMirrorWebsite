@@ -76,20 +76,19 @@ function SleepDataChartMouth({ userData }) {
           display: false // this will remove the grid lines
         },
         ticks: {
-          autoSkip: false, // this ensures "mouth_status" labels are not skipped
+          autoSkip: false, 
         }
       }
     }
   };
 
-  // Adjust the style to center the chart in the wrapper if needed
+  
   const style = {
     margin: 'auto',
-    maxWidth: '400px' // Adjust the maximum width as needed
+    maxWidth: '400px' 
   };
 
   return <div style={style}><Bar data={data} options={options} /></div>;
 }
 
 export { SleepDataChart, SleepDataChartMouth };
-

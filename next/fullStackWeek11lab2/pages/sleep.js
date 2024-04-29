@@ -10,36 +10,35 @@ import styles from "../components/notes/SleepDataCharts.module.css";
 
 function Sleep() {
   const [userData, setUserData] = useState([]);
-  const [loading, setLoading] = useState(true); // Added loading state
+  const [loading, setLoading] = useState(true); 
   const [showWarning, setShowWarning] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         console.log("Attempting to fetch data...");
-        const response = await fetch("/api/get-data");
+        const response = await fetch("/api/get-data");  //
         if (!response.ok) {
           throw new Error(`Network response was not ok: ${response.statusText}`);
         }
         const data = await response.json();
-        console.log("Fetched data:", data); // Check the structure of fetched data
+        console.log("Fetched data:", data); 
   
-        if (data && data.userData) {
+        if (data && data.userData) {  
           setUserData(data.userData);
   
-          // Calculate total times after setting userData
-          const totalOpenTime = data.userData.reduce((acc, item) => {
+          const totalOpenTime = data.userData.reduce((acc, item) => {  //check to see if the user has spent more time with their mouth open
             return item.mouth_status === 'Open' ? acc + item.time_spent : acc;
           }, 0);
       
           const totalClosedTime = data.userData.reduce((acc, item) => {
-            return item.mouth_status === 'Closed' ? acc + item.time_spent : acc;
+            return item.mouth_status === 'Closed' ? acc + item.time_spent : acc; //or if their mouth is closed
           }, 0);
       
-          if (totalOpenTime > totalClosedTime) {
-            setShowWarning(true); // Show warning if more time is spent with mouth open
+          if (totalOpenTime > totalClosedTime) { //if the mouth is open longer than it has been closed calls the warning function
+            setShowWarning(true); 
           } else {
-            setShowWarning(false); // Otherwise, do not show the warning
+            setShowWarning(false); 
           }
         } else {
           console.error("Data fetched doesn't have the expected format", data);
@@ -47,7 +46,7 @@ function Sleep() {
       } catch (error) {
         console.error("Failed to fetch data:", error);
       } finally {
-        setLoading(false); // Ensure loading is set to false regardless of fetch outcome
+        setLoading(false); 
       }
     };
   

@@ -65,4 +65,3 @@ export function GlobalContextProvider(props) {
 
 
 export default GlobalContext
-
