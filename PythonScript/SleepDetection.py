@@ -1,3 +1,6 @@
+#This is the python code i used on my raspberry Pi. I had two sepereate github for my pi and my web app. To 
+#appeal for one github repository for everything i am adding my raspberry pi code here too
+
 import mediapipe as mp
 import cv2
 import numpy as np
